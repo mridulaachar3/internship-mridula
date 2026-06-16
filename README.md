@@ -1,4 +1,4 @@
-# Internship - Mridula
+# Internship
 
 This repository contains my daily internship tasks and Python practice programs.
 
