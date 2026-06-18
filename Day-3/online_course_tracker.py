@@ -1,8 +1,8 @@
-# Online Course Tracker
-
+# Taking student details
 name = input("Enter student name: ").strip()
 course_name = input("Enter course name: ").strip()
 
+# Course details stored in a tuple
 course_info = (course_name, 12, "Prof. Sharma")
 
 print("\nCourse Details")
@@ -10,7 +10,7 @@ print("Course     :", course_info[0])
 print("Duration   :", course_info[1], "weeks")
 print("Instructor :", course_info[2])
 
-
+# Topics completed by the student
 topics_input = input("\nEnter completed topics (comma separated): ")
 completed_topics = [topic.strip() for topic in topics_input.split(",")]
 
@@ -27,26 +27,21 @@ all_topics = [
     "Projects"
 ]
 
-# Find pending topics
 pending_topics = []
 
 for topic in all_topics:
     if topic not in completed_topics:
         pending_topics.append(topic)
 
-# Skills gained
+# Skills learned during the course
 skills_input = input("\nEnter skills gained (comma separated): ")
-
 skills_list = [skill.strip().lower() for skill in skills_input.split(",")]
 
-# Remove duplicate skills
 unique_skills = set(skills_list)
 
-# Combine student skills and course skills
 course_skills = {"python", "programming", "problem solving"}
 all_skills = unique_skills.union(course_skills)
 
-# Scores
 scores = {}
 
 print("\nEnter scores for completed topics")
@@ -55,7 +50,6 @@ for topic in completed_topics:
     score = int(input(f"Score for {topic}: "))
     scores[topic] = score
 
-# Student profile
 student_profile = {
     "name": name.title(),
     "course": course_info[0],
@@ -65,7 +59,6 @@ student_profile = {
     "scores": scores
 }
 
-# Calculate statistics
 if scores:
     average_score = sum(scores.values()) / len(scores)
     best_topic = max(scores, key=scores.get)
@@ -77,9 +70,8 @@ else:
 
 completion_percentage = (len(completed_topics) / len(all_topics)) * 100
 
-# Display report
 print("\n" + "=" * 40)
-print("      STUDENT COURSE REPORT")
+print("STUDENT COURSE REPORT")
 print("=" * 40)
 
 print("Name       :", student_profile["name"])
@@ -88,7 +80,7 @@ print("Instructor :", course_info[2])
 
 print("\nCompleted Topics:")
 for topic in completed_topics:
-    print("✓", topic)
+    print("-", topic)
 
 print("\nPending Topics:")
 for topic in pending_topics:
@@ -108,11 +100,9 @@ print("\nAverage Score :", round(average_score, 2))
 print("Best Topic    :", best_topic)
 print("Weakest Topic :", weakest_topic)
 
-# Update completed topics
 choice = input("\nDo you want to add another completed topic? (yes/no): ").strip().lower()
 
 if choice == "yes":
-
     new_topic = input("Enter topic name: ").strip()
 
     if new_topic in completed_topics:
@@ -132,7 +122,7 @@ if choice == "yes":
         completed_topics.append(new_topic)
         student_profile["completed_topics"] = completed_topics
 
-        print("Topic is not in the syllabus, but it has been added.")
+        print("Topic added, but it is not part of the course syllabus.")
 
 print("\nProgress saved.")
 print("See you tomorrow!")
