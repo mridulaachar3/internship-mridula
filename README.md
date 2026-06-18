@@ -3,9 +3,35 @@
 This repository contains my daily internship tasks and Python practice programs.
 
 ## Day 1
-- Student Marks Analyzer
-  - Takes student details and marks as input
-  - Calculates total, average, and percentage
-  - Determines pass/fail status
-  - Assigns grades
-  - Checks eligibility for the next course level
+
+* Student Marks Analyzer
+
+  * Takes student details and marks as input
+  * Calculates total, average, and percentage
+  * Determines pass/fail status
+  * Assigns grades
+  * Checks eligibility for the next course level
+
+## Day 2
+
+* Movie Ticket Booking System
+
+  * Takes customer details and booking information as input
+  * Allows selection of movie type (2D, 3D, or IMAX)
+  * Validates age and ticket count
+  * Calculates ticket cost based on movie type
+  * Applies discounts based on age and number of tickets
+  * Generates booking summaries and booking status
+  * Maintains the total collection for all bookings
+## Day 3
+
+* Online Course Tracker
+
+  * Stores course information using tuples
+  * Tracks completed and pending topics using lists
+  * Manages skills using sets to remove duplicates
+  * Records topic scores using dictionaries
+  * Calculates average score and course completion percentage
+  * Identifies best and weakest topics
+  * Allows updating completed topics interactively
+  * Displays a complete student learning profile
