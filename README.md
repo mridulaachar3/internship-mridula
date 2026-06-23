@@ -35,3 +35,12 @@ This repository contains my daily internship tasks and Python practice programs.
   * Identifies best and weakest topics
   * Allows updating completed topics interactively
   * Displays a complete student learning profile
+## Day 4
+- Food Ordering System
+  - Displays menu items and prices
+  - Allows customers to add multiple food items
+  - Calculates bill using functions and *args
+  - Applies discounts using **kwargs
+  - Supports student and bulk-order discounts
+  - Accepts coupon codes for additional savings
+  - Generates an order summary and confirmation message
