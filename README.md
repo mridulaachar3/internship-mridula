@@ -44,3 +44,15 @@ This repository contains my daily internship tasks and Python practice programs.
   - Supports student and bulk-order discounts
   - Accepts coupon codes for additional savings
   - Generates an order summary and confirmation message
+## Day 5
+
+ -Simple Payment Application
+
+  * Simulates a digital wallet payment system
+  * Validates user PIN with a maximum of three attempts
+  * Generates unique transaction IDs using the random module
+  * Records transaction date and time using the datetime module
+  * Calculates processing fees using the math module
+  * Handles invalid payment amounts and insufficient balance
+  * Uses custom exceptions for error handling
+  * Displays payment confirmation and remaining wallet balance
