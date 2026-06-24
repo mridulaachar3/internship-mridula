@@ -15,25 +15,25 @@ class BadAmountError(Exception):
     pass
 
 
-# ---- setup ----
 correct_pin = "1234"
 wallet_balance = 0
 
 
-# functions 
-
+# functions
 def get_txn_id():
     # generates a random transaction id using random module
     num = random.randint(100000, 999999)
     return "TXN" + str(num)
+
 
 def get_time():
     # current date and time using datetime module
     now = datetime.datetime.now()
     return now.strftime("%d-%m-%Y %H:%M:%S")
 
+
 def get_fee(amount):
-    # 2% fee, rounded up using math.ceil so we don't get decimals
+    # 2% fee, rounded up
     return math.ceil(amount * 0.02)
 
 
@@ -48,7 +48,7 @@ except ValueError:
     print("That's not a valid number. Exiting.")
     exit()
 
-print(f"Wallet Balance: Rs.{wallet_balance}")
+print(f"Wallet Balance: Rs.{wallet_balance:.2f}")
 print()
 
 # step 2 - PIN check (max 3 tries)
@@ -59,9 +59,8 @@ for attempt in range(1, 4):
 
     try:
         if pin != correct_pin:
-            raise WrongPINError("Wrong PIN!")   # raise sends us to except block
+            raise WrongPINError("Wrong PIN!")
 
-        # if we reach this line, pin was correct
         print("PIN accepted!")
         pin_ok = True
         break
@@ -69,7 +68,7 @@ for attempt in range(1, 4):
     except WrongPINError as e:
         print(f"Error: {e} ({3 - attempt} tries left)")
 
-if pin_ok == False:
+if not pin_ok:
     print("Too many wrong attempts. Exiting.")
     exit()
 
@@ -83,23 +82,27 @@ try:
     if amount <= 0:
         raise BadAmountError("Amount must be greater than 0.")
 
-    # check 2 - should have enough balance
-    if amount > wallet_balance:
-        raise LowBalanceError(f"You only have Rs.{wallet_balance} in your wallet.")
-
-    # if both checks pass, do the payment
+    # calculate fee and total deduction
     fee = get_fee(amount)
     total = amount + fee
+
+    # check 2 - should have enough balance for amount + fee
+    if total > wallet_balance:
+        raise LowBalanceError(
+            f"You need Rs.{total:.2f} including fee, but you only have Rs.{wallet_balance:.2f}."
+        )
+
+    # process payment
     wallet_balance = wallet_balance - total
 
     print()
     print("=== Payment Successful ===")
     print("Transaction ID :", get_txn_id())
     print("Time           :", get_time())
-    print("Amount Paid    : Rs.", amount)
-    print("Processing Fee : Rs.", fee)
-    print("Total Deducted : Rs.", total)
-    print("Balance Left   : Rs.", wallet_balance)
+    print(f"Amount Paid    : Rs.{amount:.2f}")
+    print(f"Processing Fee : Rs.{fee:.2f}")
+    print(f"Total Deducted : Rs.{total:.2f}")
+    print(f"Balance Left   : Rs.{wallet_balance:.2f}")
     print("==========================")
 
 except BadAmountError as e:
@@ -109,11 +112,9 @@ except LowBalanceError as e:
     print("Balance Error:", e)
 
 except ValueError:
-    # if user types letters instead of a number
     print("Please enter a valid number.")
 
 finally:
-    # finally block runs no matter what - success or failure
     print()
     print("Thank you for using QuickPay!")
     print("Session ended at:", get_time())
