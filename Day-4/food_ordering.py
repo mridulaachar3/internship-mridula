@@ -93,9 +93,18 @@ def apply_discounts(**kwargs):
     return round(final, 2), round(discount, 2)
 
 
-def show_bill(cust_name, total, discount, final):
+
+def calculate_delivery_charge(amount):
+    if amount >= 500:
+        return 0
+    else:
+        return 50
+ 
+
+
+def show_bill(cust_name, total, discount, final,delivery_charge,final_payble):
     
-    print()
+    print(final_payble)
     print("=" * 38)
     print(f"  ORDER SUMMARY for {cust_name.title()}")
     print("=" * 38)
@@ -111,6 +120,9 @@ def show_bill(cust_name, total, discount, final):
     if discount > 0:
         print(f"  Discount    : -Rs.{discount}")
     print(f"  Total       :  Rs.{final}")
+    print(f"Delivery      :Rs.{delivery_charge}")
+    print(f"Payable       :Rs.{final_payable}")
+    
     print("=" * 38)
 
 
@@ -175,7 +187,10 @@ final_amount, discount_amount = apply_discounts(
     is_student=is_student,
     has_coupon=coupon_code,
     is_bulk=is_bulk
+    
 )
+delivery_charge=calculate_delivery_charge(final_amount)
+final_payable=final_amount+delivery_charge
 
-show_bill(name, raw_total, discount_amount, final_amount)
-confirm(name, final_amount)
+show_bill(name, raw_total, discount_amount, final_amount, delivery_charge, final_payable)
+confirm(name, final_payable)
