@@ -138,6 +138,29 @@ def update_contact():
 
     with open(JSON_FILE, "w") as f:
         json.dump(contacts, f, indent=4)
+def delete_contact():
+    if not os.path.exists(JSON_FILE):
+        print("No contacts found")
+        return
+    search=input("enter the name to delete:").strip().lower()
+    with open(JSON_FILE,"r") as f:
+        contacts=json.load(f)
+    found=False
+    for c in contacts:
+        if c["name"].lower() == search:
+            contacts.remove(c)
+            found=True
+            print("Contact is delted")
+            break
+    if not found:
+        print("contact is not found")
+        return
+    with open(JSON_FILE,"w")as f:
+        json.dump(contacts,f,indent=4)
+
+
+
+
 
 
 # main menu
@@ -149,7 +172,8 @@ while True:
     print("3. View CSV")
     print("4. View JSON")
     print("5. Update contact")
-    print("6. Exit")
+    print("6. Delete Contact")
+    print("7.Exit!")
 
     choice = input("Choose: ").strip()
 
@@ -172,8 +196,11 @@ while True:
         update_contact()
 
     elif choice == "6":
-        print("Bye!")
+        delete_contact()
+    elif choice == "7":
+        print("BYE!")
         break
+        
 
     else:
         print("Invalid option.")
