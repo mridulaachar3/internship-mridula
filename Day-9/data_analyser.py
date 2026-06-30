@@ -1,5 +1,4 @@
 # Data Analyzer Utility Program
-# Day 9 - mutable/immutable, memory, copy, collections module
 
 import copy
 from collections import Counter, defaultdict
@@ -14,11 +13,11 @@ print(f"a = {a}, b = {b}")
 print("b changed but a stayed same - ints are immutable\n")
 
 list1 = [1, 2, 3]
-list2 = list1   # not a copy, both pointing to same list
+list2 = list1.copy()  # creates a shallow copy
 list2.append(4)
 print("list1:", list1)
 print("list2:", list2)
-print("changed list2 but list1 changed too lol - lists are mutable\n")
+print("changed list2 but list1 stayed same - lists are mutable\n")
 
 
 # memory reference
