@@ -21,11 +21,12 @@ def check_name(name):
 
 
 def check_email(email):
-    # basic email pattern - looked this up
-    pattern = r"^[\w\.-]+@[\w\.-]+\.\w{2,}$"
-    if re.match(pattern, email):
-        return True, "Valid"
-    return False, "Invalid email, example: name@gmail.com"
+    # basic email pattern 
+    pattern = r"^[\w\.-]+@gmail\.com$"
+    if email.endswith("@gmail.com")and re.match(pattern,email):
+         return True, "Valid"
+    return False, "Only Gmail addresses are allowed (example: name@gmail.com)"
+    
 
 
 def check_phone(phone):
@@ -72,7 +73,7 @@ pwd    = input("Password: ").strip()
 print()
 print("--- Validation ---")
 
-# running all checks
+
 results = [
     ("Employee ID", check_emp_id(emp_id)),
     ("Name",        check_name(name)),
